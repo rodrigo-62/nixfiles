@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WALLPAPER_DIR="/etc/nixos/home/wallpapers"
+WALLPAPER_DIR="../wallpapers"
 
 if [ ! -d "$WALLPAPER_DIR" ]; then
     notify-send "Error" "Wallpaper directory not found."
