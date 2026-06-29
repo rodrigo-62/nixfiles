@@ -109,6 +109,7 @@ in
     vesktop
     calibre
     gnome-calendar
+    termdown
   ];
 
   features.programs.cli.fastfetch = {
