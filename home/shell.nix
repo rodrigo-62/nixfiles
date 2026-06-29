@@ -40,6 +40,8 @@
 
       histoff = "fc -p /dev/null 1000 0";
       histon  = "fc -P";      
+      
+      conf = "cd ~/.nixfiles && ls";
     };
 
     plugins = [
