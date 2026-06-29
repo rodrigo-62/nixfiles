@@ -26,17 +26,20 @@
       ls   = "ls --color=auto";
       ll   = "ls -lah --color=auto";
 
-      nrs  = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
-      nrsu  = "sudo nix flake update nixpkgs && sudo nixos-rebuild switch --flake /etc/nixos#nixos";
-      nrsua = "sudo nix flake update && sudo nixos-rebuild switch --flake /etc/nixos#nixos"; # all inputs
-      nrst = "sudo nixos-rebuild switch --flake /etc/nixos#nixos --show-trace -L -v";
+      nrs   = "sudo nixos-rebuild switch --flake ~/.nixfiles#nixos";      
+      nrsu  = "sudo nix flake update nixpkgs --flake ~/.nixfiles && sudo nixos-rebuild switch --flake ~/.nixfiles#nixos";
+      nrsua = "sudo nix flake update --flake ~/.nixfiles && sudo nixos-rebuild switch --flake ~/.nixfiles#nixos";
+      nrst  = "sudo nixos-rebuild switch --flake ~/.nixfiles#nixos --show-trace -L -v";
+
       nsv  = "nix-store --verify --check-contents";
+      nso = "nix-store --optimise";
+      ngc = "sudo nix-collect-garbage -d";
 
       yt  = "ytfzf --detach --ytdl-pref='bestvideo[height<=?720]+bestaudio/best'";
       yt2 = "ytfzf --ytdl-pref='bestvideo[height<=?720]+bestaudio/best'";
 
       histoff = "fc -p /dev/null 1000 0";
-      histon  = "fc -P";
+      histon  = "fc -P";      
     };
 
     plugins = [
