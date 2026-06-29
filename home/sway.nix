@@ -2,6 +2,7 @@
 
 let
   wallpaper = ./wallpapers/solid-color-image.png;
+  scripts_path = ./scripts;
 
   c = {
     darkblue    = "#08052b";
@@ -207,7 +208,7 @@ in
         "${mod}+Shift+Print" = ''exec grim - | satty --filename -'';
 
         # Screen Recording
-        "${mod}+Shift+r"     = "exec /etc/nixos/home/scripts/screen_record_toggle.sh";
+        "${mod}+Shift+r"     = "exec ${scripts_path}/screen_record_toggle.sh";
  
         # Volume
         "XF86AudioRaiseVolume"  = "exec swayosd-client --output-volume raise";
@@ -233,10 +234,10 @@ in
 
         # Wallpaper swap
         # "${mod}+Shift+w" = "exec /etc/nixos/home/scripts/wallpaper_swap.sh";
-        "${mod}+w"       = "exec /etc/nixos/home/scripts/wallpaper_select.sh";
+        "${mod}+w"         = "exec ${scripts_path}/wallpaper_select.sh";
 
         # launch scripts
-        "${mod}+s" = "exec /etc/nixos/home/scripts/run.sh";
+        "${mod}+s" = "exec ${scripts_path}/run.sh";
       };
 
       modes.resize = {
