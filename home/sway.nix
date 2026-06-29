@@ -2,6 +2,7 @@
 
 let
   wallpaper = ./wallpapers/solid-color-image.png;
+  wallpapers_path = ./wallpapers;
   scripts_path = ./scripts;
 
   c = {
@@ -234,7 +235,7 @@ in
 
         # Wallpaper swap
         # "${mod}+Shift+w" = "exec /etc/nixos/home/scripts/wallpaper_swap.sh";
-        "${mod}+w"         = "exec ${scripts_path}/wallpaper_select.sh";
+        "${mod}+w" = "exec ${scripts_path}/wallpaper_select.sh ${wallpapers_path}";
 
         # launch scripts
         "${mod}+s" = "exec ${scripts_path}/run.sh";
