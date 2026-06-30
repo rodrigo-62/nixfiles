@@ -111,7 +111,7 @@ in
     gnome-calendar
     termdown
 
-    proton-vpn-gui
+    protonvpn-gui
     simplex-chat-desktop
     tor-browser
   ];
