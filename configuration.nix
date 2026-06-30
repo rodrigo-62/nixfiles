@@ -185,6 +185,12 @@
   services.udisks2.enable = true;
   services.flatpak.enable = true;
 
+  services.tor = {
+    enable = true;
+    client.enable = true; # starts a SOCKS proxy on port 9050     
+    # torsocks.enable = true; 
+  };
+
   # privileged programs
   programs.wireshark.enable = true;
   programs.wireshark.package = pkgs.wireshark;
