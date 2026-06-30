@@ -110,6 +110,10 @@ in
     calibre
     gnome-calendar
     termdown
+
+    proton-vpn-gui
+    simplex-chat-desktop
+    tor-browser
   ];
 
   features.programs.cli.fastfetch = {
