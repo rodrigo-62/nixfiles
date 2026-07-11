@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 let
+  t = import ./theme.nix;
+
   powerMenuScript = pkgs.writeShellScript "rofi-power-menu" ''
     entries="   Shutdown\n   Reboot\n   Suspend"
     
@@ -84,7 +86,14 @@ in
       };
     }];
 
+    
     style = ''
+      @define-color fg     #${t.white};
+      @define-color dim    #${t.grey};
+      @define-color accent #${t.purple};
+      @define-color brown  #${t.yellowbrown};
+      @define-color urgent #${t.urgentred};
+
       * {
         border:        none;
         border-radius: 0;
@@ -97,14 +106,14 @@ in
         margin:           0;
         border-top:       1px solid #3D383D;
         background-color: #000000;
-        color:            #fcfcfa;
+        color:            @fg;
       }
 
       #workspaces button {
         padding:          0 7px;
         background-color: transparent;
         background-image: none;
-        color:            #b0b5bd;
+        color:            @dim;
         border-bottom:    2px solid transparent;
         transition:       all 0.2s ease;
         box-shadow:       none;
@@ -113,9 +122,9 @@ in
       #workspaces button:hover {
         background-color: #3a3740;
         background-image: none;
-        color:            #c388aa;
+        color:            @accent;
         box-shadow:       none;
-        border-bottom:    2px solid #8b5b65;
+        border-bottom:    2px solid @brown;
       }
 
       #workspaces button.focused,
@@ -123,12 +132,12 @@ in
         background-color: #32303a;
         background-image: none;
         color:            #d4c8da;
-        border-bottom:    3px solid #c388aa;
+        border-bottom:    3px solid @accent;
         box-shadow:       none;
       }
 
       #workspaces button.urgent {
-        background-color: #824867;
+        background-color: @urgent;
         background-image: none;
         color:            #e8e6f0;
         box-shadow:       none;
@@ -136,8 +145,8 @@ in
 
       #cpu, #memory, #battery,
       #pulseaudio, #clock, #custom-power {
-        padding:     1px 7px 0px 7px; /* top right bottom left */
-        color:       #fcfcfa;
+        padding:     1px 7px 0px 7px;
+        color:       @fg;
         font-family: "FiraCode Nerd Font", "FiraCode Nerd Font Mono", "Inter";
         font-size:   15px;
       }
@@ -147,39 +156,40 @@ in
         padding-left: 11px;
       }
 
-      #pulseaudio            { color: #95aec7; }
-      #battery               { color: #95c7ae; }
-      #clock                 { color: #fcfcfa; }
+      #pulseaudio { color: #95aec7; }
+      #battery    { color: #95c7ae; }
+      #clock      { color: @fg; }
 
-      #battery.warning  { color: #8b5b65; }
+      #battery.warning  { color: @brown; }
       #battery.critical {
-        color:            #fcfcfa;
-        background-color: #824867;
+        color:            @fg;
+        background-color: @urgent;
       }
-      
+
       tooltip {
         background-color: #000000;
-        border:           1px solid #2e2a2e;  /* matches the bar's top border */
+        border:           1px solid #2e2a2e;
         border-radius:    6px;
       }
 
       tooltip > label {
-        color:   #fcfcfa;
+        color:   @fg;
         padding: 4px 8px;
       }
-      
+
       #custom-power {
-        color:         #fcfcfa;
+        color:         @fg;
         padding-left:  11px;
-        padding-right: 15px; 
+        padding-right: 15px;
         margin-left:   4px;
-        border-left:   1px solid #3a373e; 
+        border-left:   1px solid #3a373e;
         transition:    color 0.2s ease;
       }
 
       #custom-power:hover {
-        color: #c388aa;
+        color: @accent;
       }
     '';
   };
+
 }

@@ -1,5 +1,8 @@
 { ... }:
 
+let
+  t = import ./theme.nix;
+in
 {
   programs.swaylock = {
     enable   = true;
@@ -8,26 +11,25 @@
       scaling = "fill";
 
       font = "DM Sans"; # "FiraCode Nerd Font Mono";
-      # color                = "000000";
       indicator-radius     = 85;
-      ring-color           = "485e7f";
-      key-hl-color         = "c388aa";
-      bs-hl-color          = "8b5b65";
+      ring-color           = t.lightblue;
+      key-hl-color         = t.purple;
+      bs-hl-color          = t.yellowbrown;
       inside-color         = "00000000";
-      line-color           = "2a272b";
-      text-color           = "fcfcfa";
+      line-color           = t.bgAlt;
+      text-color           = t.white;
       show-failed-attempts = true;
 
-      ring-ver-color    = "c388aa";
-      inside-ver-color  = "00000000";
-      text-ver-color    = "b0b5bd";
-      ring-wrong-color  = "824867";
-      inside-wrong-color = "00000000";
-      text-wrong-color  = "c388aa";
+      ring-ver-color      = t.purple;
+      inside-ver-color    = "00000000";
+      text-ver-color      = t.grey;
+      ring-wrong-color    = t.urgentred;
+      inside-wrong-color  = "00000000";
+      text-wrong-color    = t.purple;
 
-      ring-clear-color   = "485e7f";
-      inside-clear-color = "00000000";
-      text-clear-color   = "b0b5bd";
+      ring-clear-color    = t.lightblue;
+      inside-clear-color  = "00000000";
+      text-clear-color    = t.grey;
 
       separator-color = "00000000";
     };

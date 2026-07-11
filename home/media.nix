@@ -1,11 +1,14 @@
 { pkgs, ... }:
 
+let
+  t = import ./theme.nix;
+in
 {
   # mako notification daemon (started by sway)
   home.file.".config/mako/config".text = ''
-    background-color=#2a272bcc
-    text-color=#fcfcfa
-    border-color=#485e7f
+    background-color=#${t.bgAlt}cc
+    text-color=#${t.white}
+    border-color=#${t.lightblue}
     border-radius=4
     border-size=1
     padding=8,12

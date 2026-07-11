@@ -79,34 +79,34 @@ in
 
       colors = {
         focused = {
-          border      = c.lightblue;
-          background  = c.darkblue;
-          text        = c.white;
-          indicator   = c.mediumgrey;
-          childBorder = c.mediumgrey;
+          border      = "#${t.lightblue}";
+          background  = "#${t.darkblue}";
+          text        = "#${t.white}";
+          indicator   = "#${t.mediumgrey}";
+          childBorder = "#${t.mediumgrey}";
         };
         unfocused = {
-          border      = c.midgrey;
-          background  = c.darkblue;
-          text        = c.grey;
-          indicator   = c.darkgrey;
-          childBorder = c.midgrey;
+          border      = "#${t.midgrey}";
+          background  = "#${t.darkblue}";
+          text        = "#${t.grey}";
+          indicator   = "#${t.darkgrey}";
+          childBorder = "#${t.midgrey}";
         };
         focusedInactive = {
-          border      = c.midgrey;
-          background  = c.darkblue;
-          text        = c.grey;
-          indicator   = c.black;
-          childBorder = c.midgrey;
+          border      = "#${t.midgrey}";
+          background  = "#${t.darkblue}";
+          text        = "#${t.grey}";
+          indicator   = "#${t.black}";
+          childBorder = "#${t.midgrey}";
         };
         urgent = {
-          border      = c.urgentred;
-          background  = c.urgentred;
-          text        = c.white;
-          indicator   = c.yellowbrown;
-          childBorder = c.yellowbrown;
+          border      = "#${t.urgentred}";
+          background  = "#${t.urgentred}";
+          text        = "#${t.white}";
+          indicator   = "#${t.yellowbrown}";
+          childBorder = "#${t.yellowbrown}";
         };
-        background = c.black;
+        background = "#${t.black}";
       };
 
       input = {
