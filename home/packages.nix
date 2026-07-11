@@ -68,7 +68,6 @@ in
     lm_sensors
     btop
     duf
-    wl-clipboard
     hyprpicker
     cliphist
     cmus

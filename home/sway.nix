@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 let
+  t = import ./theme.nix;
   wallpaper = ./wallpapers/solid-color-image.png;
   wallpapers_path = ./wallpapers;
   scripts_path = ./scripts;
@@ -163,7 +164,7 @@ in
 
         # Workspace navigation
         "${mod}+Shift+Tab"   = "workspace next"; 
-        "${mod}+Ctrl+Tab   " = "workspace prev";
+        "${mod}+Ctrl+Tab"    = "workspace prev";
         "${mod}+Tab"         = "exec rofi -show window -config ~/.config/rofi/rofidmenu.rasi";
         "Mod1+Tab"           = "workspace back_and_forth"; # "exec swaymsg '[con_mark=_prev] focus'";
 

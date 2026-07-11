@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    helix.url   = "github:helix-editor/helix/master";
+    # helix.url   = "github:helix-editor/helix/master";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     home-manager = {

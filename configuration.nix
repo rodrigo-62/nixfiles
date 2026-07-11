@@ -50,6 +50,7 @@
   nix.settings.experimental-features  = [ "nix-command" "flakes" ];
 
   system.autoUpgrade.enable = true;
+  system.autoUpgrade.flake = "/home/parrhasius/.nixfiles#nixos";
   system.autoUpgrade.dates = "weekly";
 
   nix.gc = {
