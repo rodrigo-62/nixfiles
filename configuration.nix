@@ -12,10 +12,11 @@
     options btusb enable_autosuspend=n
     options iwlwifi bt_coex_active=0
   '';
+  boot.kernelModules = [ "uinput" ];
 
   # Networking
-  networking.hostName                  = "nixos";
-  networking.networkmanager.enable     = true;
+  networking.hostName                   = "nixos";
+  networking.networkmanager.enable      = true;
   networking.firewall.trustedInterfaces = [ "virbr0" "virbr1" "virbr2" ];
 
   # Locale & time
@@ -41,7 +42,7 @@
   users.users.parrhasius = {
     isNormalUser = true;
     description  = "Parrhasius";
-    extraGroups  = [ "networkmanager" "wheel" "wireshark" "docker" "libvirtd" "storage" "dialout" "kvm" "audio" ];
+    extraGroups  = [ "networkmanager" "wheel" "wireshark" "docker" "libvirtd" "storage" "dialout" "kvm" "audio" "uinput" ];
     shell        = pkgs.zsh;
   };
 
@@ -50,7 +51,6 @@
   nix.settings.experimental-features  = [ "nix-command" "flakes" ];
 
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.flake = "/home/parrhasius/.nixfiles#nixos";
   system.autoUpgrade.dates = "weekly";
 
   nix.gc = {
@@ -137,6 +137,10 @@
   
   # Hardware
   hardware.enableAllFirmware = true;
+
+  # Tablet
+  hardware.opentabletdriver.enable = true;
+  hardware.uinput.enable           = true;
 
   hardware.bluetooth = {
     enable      = true;
