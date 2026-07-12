@@ -23,44 +23,33 @@ let
 
   cmusNowPlaying = pkgs.writeShellScript "waybar-cmus" ''
     info=$(${pkgs.cmus}/bin/cmus-remote -Q 2>/dev/null)
+    status=$(printf '%s\n' "$info" | awk '/^status /{print $2}')
+
+    if [ "$status" != "playing" ]; then
+      printf '{"text": ""}\n'
+      exit 0
+    fi
 
     json_escape() {
       printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
     }
 
-    if [ -z "$info" ]; then
-      printf '{"text": "", "tooltip": "cmus not running", "class": "stopped"}\n'
-      exit 0
-    fi
-
-    status=$(printf '%s\n' "$info" | awk '/^status /{print $2}')
     artist=$(printf '%s\n' "$info" | grep '^tag artist ' | cut -d ' ' -f 3-)
     title=$(printf '%s\n'  "$info" | grep '^tag title '  | cut -d ' ' -f 3-)
 
-    case "$status" in
-      playing) icon="▶" ;;
-      paused)  icon="⏸" ;;
-      *)       icon="⏹" ;;
-    esac
+    [ -z "$artist" ] && artist="Unknown artist"
+    [ -z "$title" ]  && title="Unknown title"
 
-    if [ -z "$artist" ] && [ -z "$title" ]; then
-      label="$icon cmus"
-    else
-      [ -z "$artist" ] && artist="Unknown artist"
-      [ -z "$title" ]  && title="Unknown title"
-      label="$icon $artist - $title"
-    fi
-
+    label="$artist - $title"
     len=$(printf '%s' "$label" | wc -c)
     if [ "$len" -gt 42 ]; then
       label=$(printf '%s' "$label" | cut -c1-39)"..."
     fi
 
-    printf '{"text": "%s", "tooltip": "%s - %s", "class": "%s"}\n' \
+    printf '{"text": "%s", "tooltip": "%s - %s"}\n' \
       "$(json_escape "$label")" \
       "$(json_escape "$artist")" \
-      "$(json_escape "$title")" \
-      "$status"
+      "$(json_escape "$title")"
   '';
 
 in
@@ -75,7 +64,7 @@ in
       margin-bottom = 0;
 
       modules-left   = [ "sway/workspaces" ];
-      modules-center = [ "custom/cmus-prev" "custom/cmus-toggle" "custom/cmus" "custom/cmus-next" ];
+      modules-center = [ "custom/cmus-prev" "custom/cmus" "custom/cmus-next" ];
       modules-right  = [
         "cpu" "memory" "pulseaudio" "battery" "clock" "custom/power"
       ];
@@ -258,25 +247,25 @@ in
         color: @accent;
       }
 
-      #custom-cmus-prev, #custom-cmus-toggle, #custom-cmus-next {
+      #custom-cmus-prev, #custom-cmus-next {
         padding:    0 4px;
         color:      #b0b5bd;
         transition: color 0.2s ease;
       }
 
-      #custom-cmus-prev:hover,
-      #custom-cmus-toggle:hover,
-      #custom-cmus-next:hover {
+      #custom-cmus-prev:hover, #custom-cmus-next:hover {
         color: #c388aa;
       }
 
       #custom-cmus {
-        padding: 0 8px;
-        color:   #b0b5bd;
+        padding:    0 8px;
+        color:      #fcfcfa;
+        transition: color 0.2s ease;
       }
 
-      #custom-cmus.playing { color: #fcfcfa; }
-      #custom-cmus.paused  { color: #8b5b65; }
+      #custom-cmus:hover {
+        color: #c388aa;
+      }
     '';
   };
 
