@@ -23,9 +23,8 @@ let
 
   cmusNowPlaying = pkgs.writeShellScript "waybar-cmus" ''
     info=$(${pkgs.cmus}/bin/cmus-remote -Q 2>/dev/null)
-    status=$(printf '%s\n' "$info" | awk '/^status /{print $2}')
 
-    if [ "$status" != "playing" ]; then
+    if [ -z "$info" ]; then
       printf '{"text": ""}\n'
       exit 0
     fi
@@ -34,8 +33,14 @@ let
       printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
     }
 
+    status=$(printf '%s\n' "$info" | awk '/^status /{print $2}')
     artist=$(printf '%s\n' "$info" | grep '^tag artist ' | cut -d ' ' -f 3-)
     title=$(printf '%s\n'  "$info" | grep '^tag title '  | cut -d ' ' -f 3-)
+
+    if [ -z "$artist" ] && [ -z "$title" ]; then
+      printf '{"text": ""}\n'
+      exit 0
+    fi
 
     [ -z "$artist" ] && artist="Unknown artist"
     [ -z "$title" ]  && title="Unknown title"
@@ -46,10 +51,13 @@ let
       label=$(printf '%s' "$label" | cut -c1-39)"..."
     fi
 
-    printf '{"text": "%s", "tooltip": "%s - %s"}\n' \
+    if [ "$status" = "playing" ]; then class="playing"; else class="paused"; fi
+
+    printf '{"text": "%s", "tooltip": "%s - %s", "class": "%s"}\n' \
       "$(json_escape "$label")" \
       "$(json_escape "$artist")" \
-      "$(json_escape "$title")"
+      "$(json_escape "$title")" \
+      "$class"
   '';
 
 in
@@ -64,9 +72,9 @@ in
       margin-bottom = 0;
 
       modules-left   = [ "sway/workspaces" ];
-      modules-center = [ "custom/cmus-prev" "custom/cmus" "custom/cmus-next" ];
+      modules-center = [];
       modules-right  = [
-        "cpu" "memory" "pulseaudio" "battery" "clock" "custom/power"
+        "custom/cmus" "cpu" "memory" "pulseaudio" "battery" "clock" "custom/power"
       ];
 
       "sway/workspaces" = {
@@ -116,18 +124,6 @@ in
         tooltip  = false;
       };
 
-      "custom/cmus-prev" = {
-        format   = "⏮";
-        on-click = "${pkgs.cmus}/bin/cmus-remote -r";
-        tooltip  = false;
-      };
-
-      "custom/cmus-toggle" = {
-        format   = "⏯";
-        on-click = "${pkgs.cmus}/bin/cmus-remote -u";
-        tooltip  = false;
-      };
-
       "custom/cmus" = {
         exec        = "${cmusNowPlaying}";
         interval    = 3;
@@ -136,11 +132,6 @@ in
         tooltip     = true;
       };
 
-      "custom/cmus-next" = {
-        format   = "⏭";
-        on-click = "${pkgs.cmus}/bin/cmus-remote -n";
-        tooltip  = false;
-      };
     }];
 
     
@@ -208,6 +199,19 @@ in
         font-size:   15px;
       }
 
+      #custom-cmus {
+        padding:    1px 7px 0px 7px;
+        font-size:  13px;
+        transition: color 0.2s ease;
+      }
+
+      #custom-cmus.playing { color: @fg; }
+      #custom-cmus.paused  { color: @dim; }
+
+      #custom-cmus:hover {
+        color: @accent;
+      }
+
       #cpu {
         border-left:  1px solid #3a373e;
         padding-left: 11px;
@@ -247,25 +251,6 @@ in
         color: @accent;
       }
 
-      #custom-cmus-prev, #custom-cmus-next {
-        padding:    0 4px;
-        color:      #b0b5bd;
-        transition: color 0.2s ease;
-      }
-
-      #custom-cmus-prev:hover, #custom-cmus-next:hover {
-        color: #c388aa;
-      }
-
-      #custom-cmus {
-        padding:    0 8px;
-        color:      #fcfcfa;
-        transition: color 0.2s ease;
-      }
-
-      #custom-cmus:hover {
-        color: #c388aa;
-      }
     '';
   };
 
