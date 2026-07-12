@@ -74,6 +74,8 @@ in
     udiskie
     imv
     chafa
+    eza
+    bat
 
     imagemagick
     ffmpegthumbnailer

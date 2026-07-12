@@ -23,8 +23,9 @@
     ];
 
     shellAliases = {
-      ls   = "ls --color=auto";
-      ll   = "ls -lah --color=auto";
+      ls  = "eza --icons";
+      ll  = "eza -lah --icons --git";
+      cat = "bat";
 
       nrs   = "sudo nixos-rebuild switch --flake ~/.nixfiles#nixos";      
       nrsu  = "sudo nix flake update nixpkgs --flake ~/.nixfiles && sudo nixos-rebuild switch --flake ~/.nixfiles#nixos";
@@ -75,5 +76,17 @@
     enable = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+    options = [ "--cmd cd" ];
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    defaultCommand = "fd --type f --strip-cwd-prefix";
   };
 }
