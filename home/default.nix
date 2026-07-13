@@ -43,7 +43,11 @@
   ];
 
   wayland.windowManager.sway.config.input = {
-    "*OpenTabletDriver*" = {
+    "0:0:OpenTabletDriver_Virtual_Artist_Tablet" = {
+      map_to_output = "DP-1";
+    };
+
+    "0:0:OpenTabletDriver_Virtual_Tablet" = {
       map_to_output = "DP-1";
     };
   
