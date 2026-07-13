@@ -115,6 +115,7 @@ in
     protonvpn-gui
     simplex-chat-desktop
     tor-browser
+    rnote
   ];
 
   features.programs.cli.fastfetch = {
