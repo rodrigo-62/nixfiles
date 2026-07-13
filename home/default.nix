@@ -42,4 +42,21 @@
     "e %h/Downloads - - - 14d"
   ];
 
+  wayland.windowManager.sway.config.inputs = {
+  # pen -> tablet display
+  "OpenTabletDriver Virtual Artist Tablet" = {
+    map_to_output = "DP-1";
+  };
+  
+  # laptop touchpad -> laptop display
+  "type:touchpad" = {
+    map_to_output = "eDP-1";
+  };
+
+  # external mouse -> laptop display
+  "type:pointer" = {
+    map_to_output = "eDP-1";
+  };
+};
+
 }
