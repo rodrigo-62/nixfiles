@@ -51,9 +51,9 @@
       map_to_output = "DP-1";
     };
   
-    "type:touchpad" = {
-      map_to_output = "eDP-1";
-    };
+    # "type:touchpad" = {
+    #   map_to_output = "eDP-1";
+    # };
   };
 
 }
