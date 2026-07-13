@@ -43,15 +43,11 @@
   ];
 
   wayland.windowManager.sway.config.input = {
-    "OpenTabletDriver Virtual Artist Tablet" = {
+    "*OpenTabletDriver*" = {
       map_to_output = "DP-1";
     };
   
     "type:touchpad" = {
-      map_to_output = "eDP-1";
-    };
-
-    "type:pointer" = {
       map_to_output = "eDP-1";
     };
   };
