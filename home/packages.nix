@@ -116,6 +116,7 @@ in
     simplex-chat-desktop
     tor-browser
     rnote
+    lorien
   ];
 
   features.programs.cli.fastfetch = {
