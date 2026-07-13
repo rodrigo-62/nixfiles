@@ -115,7 +115,6 @@ in
     protonvpn-gui
     simplex-chat-desktop
     tor-browser
-    rnote
     lorien
   ];
 
