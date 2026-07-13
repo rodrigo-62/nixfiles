@@ -22,6 +22,7 @@
       "WHEEL_UP" = "add volume 5";
       "WHEEL_DOWN" = "add volume -5";
       "c" = "run wl-copy \"\${path}\"; show-text \"Copied: \${path}\"";
+      "C" = "script-binding crop";
     };
   };
 
