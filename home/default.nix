@@ -49,11 +49,7 @@
 
     "0:0:OpenTabletDriver_Virtual_Tablet" = {
       map_to_output = "DP-1";
-    };
-  
-    # "type:touchpad" = {
-    #   map_to_output = "eDP-1";
-    # };
+    };  
   };
 
 }

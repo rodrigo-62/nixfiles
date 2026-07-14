@@ -47,8 +47,8 @@
   };
 
   # Nix
-  nixpkgs.config.allowUnfree          = true;
-  nix.settings.experimental-features  = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree         = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.autoUpgrade.enable = true;
   system.autoUpgrade.dates = "weekly";
@@ -140,6 +140,7 @@
 
   # Tablet
   hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver.blacklistedKernelModules = [ ];
   hardware.uinput.enable           = true;
 
   hardware.bluetooth = {
