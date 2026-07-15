@@ -105,16 +105,13 @@ in
     obsidian
     sherlock
     exiftool
+    mat2
 
     firefox # (wrapFirejail "firefox" firefox "")
     vesktop
     calibre
     gnome-calendar
     termdown
-
-    protonvpn-gui
-    simplex-chat-desktop
-    tor-browser
     lorien
   ];
 
