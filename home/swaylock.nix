@@ -31,6 +31,10 @@ in
       inside-clear-color  = "00000000";
       text-clear-color    = t.grey;
 
+      ring-caps-lock-color   = t.yellowbrown; 
+      inside-caps-lock-color = "00000000";   
+      text-caps-lock-color   = t.white;
+
       separator-color = "00000000";
     };
   };
