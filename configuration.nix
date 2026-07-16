@@ -140,7 +140,7 @@
 
   # Tablet
   hardware.opentabletdriver.enable = true;
-  # hardware.opentabletdriver.blacklistedKernelModules = [ ];
+  hardware.opentabletdriver.blacklistedKernelModules = [ "hid_uclogic" "macjoy" ];
   hardware.uinput.enable           = true;
 
   hardware.bluetooth = {
