@@ -70,71 +70,71 @@ in
         name          = "main";
         output        = "eDP-1";
         
-        layer         = "top";[cite: 1]
-        position      = "bottom";[cite: 1]
-        height        = 28;[cite: 1]
-        spacing       = 1;[cite: 1]
-        margin-bottom = 0;[cite: 1]
+        layer         = "top";
+        position      = "bottom";
+        height        = 28;
+        spacing       = 1;
+        margin-bottom = 0;
 
-        modules-left   = [ "sway/workspaces" ];[cite: 1]
-        modules-center = [];[cite: 1]
+        modules-left   = [ "sway/workspaces" ];
+        modules-center = [];
         modules-right  = [
-          "custom/cmus" "cpu" "memory" "pulseaudio" "battery" "clock" "custom/power"[cite: 1]
+          "custom/cmus" "cpu" "memory" "pulseaudio" "battery" "clock" "custom/power"
         ];
 
         "sway/workspaces" = {
-          disable-scroll = true;[cite: 1]
-          all-outputs    = false;[cite: 1]
-          format         = "{name}";[cite: 1]
+          disable-scroll = true;
+          all-outputs    = false;
+          format         = "{name}";
         };
 
         cpu = {
-          interval = 2;[cite: 1]
-          format   = "CPU {usage}%";[cite: 1]
-          tooltip  = false;[cite: 1]
+          interval = 2;
+          format   = "CPU {usage}%";
+          tooltip  = false;
         };
 
         memory = {
-          interval = 2;[cite: 1]
-          format   = "RAM {percentage}%";[cite: 1]
-          tooltip  = false;[cite: 1]
+          interval = 2;
+          format   = "RAM {percentage}%";
+          tooltip  = false;
         };
 
         battery = {
-          interval        = 30;[cite: 1]
-          format          = "{icon} {capacity}%";[cite: 1]
-          format-charging = " {capacity}%";[cite: 1]
-          format-full     = " {capacity}%";[cite: 1]
-          format-icons    = [ "" "" "" "" "" ];[cite: 1]
-          states          = { warning = 30; critical = 15; };[cite: 1]
+          interval        = 30;
+          format          = "{icon} {capacity}%";
+          format-charging = " {capacity}%";
+          format-full     = " {capacity}%";
+          format-icons    = [ "" "" "" "" "" ];
+          states          = { warning = 30; critical = 15; };
         };
 
         pulseaudio = {
-          format       = "VOL {volume}%";[cite: 1]
-          format-muted = "muted";[cite: 1]
-          on-click     = "pavucontrol";[cite: 1]
-          scroll-step  = 5;[cite: 1]
+          format       = "VOL {volume}%";
+          format-muted = "muted";
+          on-click     = "pavucontrol";
+          scroll-step  = 5;
         };
 
         clock = {
-          interval       = 60;[cite: 1]
-          format         = "{:%a %d %b %H:%M}";[cite: 1]
-          locale         = "en_US.UTF-8";[cite: 1]
-          tooltip-format = "{calendar}";[cite: 1]
+          interval       = 60;
+          format         = "{:%a %d %b %H:%M}";
+          locale         = "en_US.UTF-8";
+          tooltip-format = "{calendar}";
         };
 
         "custom/power" = {
-          format   = "";[cite: 1]
-          on-click = "${powerMenuScript}";[cite: 1]
-          tooltip  = false;[cite: 1]
+          format   = "";
+          on-click = "${powerMenuScript}";
+          tooltip  = false;
         };
 
         "custom/cmus" = {
-          exec        = "${cmusNowPlaying}";[cite: 1]
-          interval    = 3;[cite: 1]
-          return-type = "json";[cite: 1]
-          on-click    = "${pkgs.cmus}/bin/cmus-remote -u";[cite: 1]
-          tooltip     = true;[cite: 1]
+          exec        = "${cmusNowPlaying}";
+          interval    = 3;
+          return-type = "json";
+          on-click    = "${pkgs.cmus}/bin/cmus-remote -u";
+          tooltip     = true;
         };
       }
 
@@ -143,27 +143,27 @@ in
         name          = "minimal";
         output        = [ "HDMI-A-1" "DP-1" ]; 
         
-        layer         = "top";[cite: 1]
-        position      = "bottom";[cite: 1]
-        height        = 28;[cite: 1]
-        spacing       = 1;[cite: 1]
-        margin-bottom = 0;[cite: 1]
+        layer         = "top";
+        position      = "bottom";
+        height        = 28;
+        spacing       = 1;
+        margin-bottom = 0;
 
-        modules-left   = [ "sway/workspaces" ];[cite: 1]
-        modules-center = [];[cite: 1]
+        modules-left   = [ "sway/workspaces" ];
+        modules-center = [];
         modules-right  = [ "clock" ];
 
         "sway/workspaces" = {
-          disable-scroll = true;[cite: 1]
-          all-outputs    = false;[cite: 1]
-          format         = "{name}";[cite: 1]
+          disable-scroll = true;
+          all-outputs    = false;
+          format         = "{name}";
         };
 
         clock = {
-          interval       = 60;[cite: 1]
+          interval       = 60;
           format         = "{:%H:%M}"; 
-          locale         = "en_US.UTF-8";[cite: 1]
-          tooltip-format = "{calendar}";[cite: 1]
+          locale         = "en_US.UTF-8";
+          tooltip-format = "{calendar}";
         };
       }
     ];
