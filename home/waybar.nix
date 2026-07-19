@@ -64,76 +64,109 @@ in
 {
   programs.waybar = {
     enable   = true;
-    settings = [{
-      layer         = "top";
-      position      = "bottom";
-      height        = 28;
-      spacing       = 1;
-      margin-bottom = 0;
+    settings = [
+      # BAR 1: MAIN (laptop)
+      {
+        name          = "main";
+        output        = "eDP-1";
+        
+        layer         = "top";[cite: 1]
+        position      = "bottom";[cite: 1]
+        height        = 28;[cite: 1]
+        spacing       = 1;[cite: 1]
+        margin-bottom = 0;[cite: 1]
 
-      modules-left   = [ "sway/workspaces" ];
-      modules-center = [];
-      modules-right  = [
-        "custom/cmus" "cpu" "memory" "pulseaudio" "battery" "clock" "custom/power"
-      ];
+        modules-left   = [ "sway/workspaces" ];[cite: 1]
+        modules-center = [];[cite: 1]
+        modules-right  = [
+          "custom/cmus" "cpu" "memory" "pulseaudio" "battery" "clock" "custom/power"[cite: 1]
+        ];
 
-      "sway/workspaces" = {
-        disable-scroll = true;
-        all-outputs    = false;
-        format         = "{name}";
-      };
+        "sway/workspaces" = {
+          disable-scroll = true;[cite: 1]
+          all-outputs    = false;[cite: 1]
+          format         = "{name}";[cite: 1]
+        };
 
-      cpu = {
-        interval = 2;
-        format   = "CPU {usage}%";
-        tooltip  = false;
-      };
+        cpu = {
+          interval = 2;[cite: 1]
+          format   = "CPU {usage}%";[cite: 1]
+          tooltip  = false;[cite: 1]
+        };
 
-      memory = {
-        interval = 2;
-        format   = "RAM {percentage}%";
-        tooltip  = false;
-      };
+        memory = {
+          interval = 2;[cite: 1]
+          format   = "RAM {percentage}%";[cite: 1]
+          tooltip  = false;[cite: 1]
+        };
 
-      battery = {
-        interval        = 30;
-        format          = "{icon} {capacity}%";
-        format-charging = " {capacity}%";
-        format-full     = " {capacity}%";
-        format-icons    = [ "" "" "" "" "" ];
-        states          = { warning = 30; critical = 15; };
-      };
+        battery = {
+          interval        = 30;[cite: 1]
+          format          = "{icon} {capacity}%";[cite: 1]
+          format-charging = " {capacity}%";[cite: 1]
+          format-full     = " {capacity}%";[cite: 1]
+          format-icons    = [ "" "" "" "" "" ];[cite: 1]
+          states          = { warning = 30; critical = 15; };[cite: 1]
+        };
 
-      pulseaudio = {
-        format       = "VOL {volume}%";
-        format-muted = "muted";
-        on-click     = "pavucontrol";
-        scroll-step  = 5;
-      };
+        pulseaudio = {
+          format       = "VOL {volume}%";[cite: 1]
+          format-muted = "muted";[cite: 1]
+          on-click     = "pavucontrol";[cite: 1]
+          scroll-step  = 5;[cite: 1]
+        };
 
-      clock = {
-        interval       = 60;
-        format         = "{:%a %d %b %H:%M}";
-        locale         = "en_US.UTF-8";
-        tooltip-format = "{calendar}";
-      };
+        clock = {
+          interval       = 60;[cite: 1]
+          format         = "{:%a %d %b %H:%M}";[cite: 1]
+          locale         = "en_US.UTF-8";[cite: 1]
+          tooltip-format = "{calendar}";[cite: 1]
+        };
 
-      "custom/power" = {
-        format   = "";
-        on-click = "${powerMenuScript}";
-        tooltip  = false;
-      };
+        "custom/power" = {
+          format   = "";[cite: 1]
+          on-click = "${powerMenuScript}";[cite: 1]
+          tooltip  = false;[cite: 1]
+        };
 
-      "custom/cmus" = {
-        exec        = "${cmusNowPlaying}";
-        interval    = 3;
-        return-type = "json";
-        on-click    = "${pkgs.cmus}/bin/cmus-remote -u";
-        tooltip     = true;
-      };
+        "custom/cmus" = {
+          exec        = "${cmusNowPlaying}";[cite: 1]
+          interval    = 3;[cite: 1]
+          return-type = "json";[cite: 1]
+          on-click    = "${pkgs.cmus}/bin/cmus-remote -u";[cite: 1]
+          tooltip     = true;[cite: 1]
+        };
+      }
 
-    }];
+      # BAR 2: SIDE MONITORS
+      {
+        name          = "minimal";
+        output        = [ "HDMI-A-1" "DP-1" ]; 
+        
+        layer         = "top";[cite: 1]
+        position      = "bottom";[cite: 1]
+        height        = 28;[cite: 1]
+        spacing       = 1;[cite: 1]
+        margin-bottom = 0;[cite: 1]
 
+        modules-left   = [ "sway/workspaces" ];[cite: 1]
+        modules-center = [];[cite: 1]
+        modules-right  = [ "clock" ];
+
+        "sway/workspaces" = {
+          disable-scroll = true;[cite: 1]
+          all-outputs    = false;[cite: 1]
+          format         = "{name}";[cite: 1]
+        };
+
+        clock = {
+          interval       = 60;[cite: 1]
+          format         = "{:%H:%M}"; 
+          locale         = "en_US.UTF-8";[cite: 1]
+          tooltip-format = "{calendar}";[cite: 1]
+        };
+      }
+    ];
     
     style = ''
       @define-color fg     #${t.white};
