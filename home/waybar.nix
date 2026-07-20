@@ -156,6 +156,7 @@ in
           return-type = "json";
           on-click    = "${pkgs.cmus}/bin/cmus-remote -u";
           tooltip     = true;
+	  escape      = true;
         };
       }
 
