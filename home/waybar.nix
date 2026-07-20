@@ -24,40 +24,61 @@ let
   cmusNowPlaying = pkgs.writeShellScript "waybar-cmus" ''
     info=$(${pkgs.cmus}/bin/cmus-remote -Q 2>/dev/null)
 
+    # 1. Handle CMUS not running
     if [ -z "$info" ]; then
-      printf '{"text": ""}\n'
+      ${pkgs.jq}/bin/jq -n -c '{text: "", tooltip: "Not running", class: "stopped"}'
       exit 0
     fi
-
-    json_escape() {
-      printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
-    }
 
     status=$(printf '%s\n' "$info" | awk '/^status /{print $2}')
-    artist=$(printf '%s\n' "$info" | grep '^tag artist ' | cut -d ' ' -f 3-)
-    title=$(printf '%s\n'  "$info" | grep '^tag title '  | cut -d ' ' -f 3-)
-
-    if [ -z "$artist" ] && [ -z "$title" ]; then
-      printf '{"text": ""}\n'
+    
+    # 2. Handle CMUS stopped
+    if [ "$status" = "stopped" ]; then
+      ${pkgs.jq}/bin/jq -n -c '{text: "", tooltip: "Stopped", class: "stopped"}'
       exit 0
     fi
 
-    [ -z "$artist" ] && artist="Unknown artist"
-    [ -z "$title" ]  && title="Unknown title"
+    # Extract tags (using -m 1 to grab only the first match safely)
+    artist=$(printf '%s\n' "$info" | grep -m 1 '^tag artist ' | cut -d ' ' -f 3-)
+    title=$(printf '%s\n' "$info" | grep -m 1 '^tag title ' | cut -d ' ' -f 3-)
+    file=$(printf '%s\n' "$info" | grep -m 1 '^file ' | cut -d ' ' -f 2-)
+    stream=$(printf '%s\n' "$info" | grep -m 1 '^stream ' | cut -d ' ' -f 2-)
 
-    label="$artist - $title"
-    len=$(printf '%s' "$label" | wc -c)
-    if [ "$len" -gt 42 ]; then
-      label=$(printf '%s' "$label" | cut -c1-39)"..."
+    # 3. Fallbacks for Web Radio / Streams
+    if [ -z "$title" ] && [ -n "$stream" ]; then
+      title="$stream"
     fi
 
-    if [ "$status" = "playing" ]; then class="playing"; else class="paused"; fi
+    # 4. Fallbacks for untagged files
+    if [ -z "$artist" ] && [ -z "$title" ]; then
+      if [ -n "$file" ]; then
+        # Strip the file path and extension for a clean display
+        label="$(${pkgs.coreutils}/bin/basename "$file" | sed 's/\.[^.]*$//')"
+        artist="Unknown"
+        title="$label"
+      else
+        ${pkgs.jq}/bin/jq -n -c '{text: "", tooltip: "No media", class: "stopped"}'
+        exit 0
+      fi
+    else
+      [ -z "$artist" ] && artist="Unknown artist"
+      [ -z "$title" ]  && title="Unknown title"
+      label="$artist - $title"
+    fi
 
-    printf '{"text": "%s", "tooltip": "%s - %s", "class": "%s"}\n' \
-      "$(json_escape "$label")" \
-      "$(json_escape "$artist")" \
-      "$(json_escape "$title")" \
-      "$class"
+    # 5. Build and sanitize JSON securely via jq. 
+    # jq's `length` and string slicing `[0:39]` process Unicode code points, 
+    # NOT bytes, ensuring Japanese and symbols never cause UTF-8 parsing errors.
+    ${pkgs.jq}/bin/jq -n -c \
+      --arg status "$status" \
+      --arg label "$label" \
+      --arg artist "$artist" \
+      --arg title "$title" \
+      '{
+        text: (if ($label | length) > 42 then ($label[0:39] + "...") else $label end),
+        tooltip: ($artist + " - " + $title),
+        class: (if $status == "playing" then "playing" else "paused" end)
+      }'
   '';
 
 in
