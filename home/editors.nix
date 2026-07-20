@@ -25,7 +25,13 @@
     package = pkgs.helix;
 
     settings = {
-      theme = "base16_transparent";    
+      theme = "base16_transparent";
+      editor = {
+        auto-info = false;
+        lsp = {
+          auto-signature-help = false;
+        };
+      };
     };
 
     extraPackages = [
