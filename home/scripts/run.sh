@@ -6,6 +6,7 @@ declare -a ALLOWED=(
     "$BASE_DIR/encrypt_md"
     "$BASE_DIR/decrypt_md"
     "$BASE_DIR/speed-reading"
+    "$BASE_DIR/writing-tools/bebop-text/src"
 )
 
 # Build menu from the whitelist, showing only the folder name
