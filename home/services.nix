@@ -19,4 +19,15 @@
     tray = "never";
   };
 
+  services.wlsunset = {
+    enable = true;
+    temperature.day = 5600;
+    temperature.night = 5000;
+  
+    gamma = "0.8"; 
+  
+    latitude = "41.15";
+    longitude = "-8.63";
+  };
+
 }
