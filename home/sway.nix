@@ -69,7 +69,7 @@ in
             criteria = { app_id = "thunar"; title = ".*(Progress|Confirm|Properties|Create|Rename|Conflict|File Operation).*"; };
             command  = "floating enable";
           }
-	  #{
+	        #{
           #  criteria = { app_id = "firefox"; title = "Extension\: \(Bitwarden Password Manager\).*"; };
           #  command = "floating enable";
           #}
@@ -278,9 +278,9 @@ in
         { command = "swaymsg workspace 1"; }
         { command = "swww-daemon --format xrgb"; }
         { command = "sleep 1 && swww img ${wallpaper} --transition-type none"; always = true; }
-        { command = "wl-paste --type text --watch cliphist store -max-items 35"; }
-        { command = "wl-paste --type image --watch cliphist store -max-items 35"; }
-        { command = "wlsunset -t 5600 -T 6500 -l 41.15 -L -8.61"; }
+        { command = "wl-paste --type text --watch cliphist store"; }
+        { command = "wl-paste --type image --watch cliphist store"; }
+        # { command = "wlsunset -t 5600 -T 6500 -l 41.15 -L -8.61"; }
         # { command = "swayrd"; }
       ];
     };
@@ -300,4 +300,9 @@ in
       layer_effects "mako" blur enable
     '';
   };
+
+  xdg.configFile."cliphist/config".text = ''
+    max-items 30
+  '';  
+  
 }
