@@ -69,10 +69,10 @@ in
             criteria = { app_id = "thunar"; title = ".*(Progress|Confirm|Properties|Create|Rename|Conflict|File Operation).*"; };
             command  = "floating enable";
           }
-	        #{
-          #  criteria = { app_id = "firefox"; title = "Extension\: \(Bitwarden Password Manager\).*"; };
-          #  command = "floating enable";
-          #}
+          {
+            criteria = { app_id = "com.bambuna.podcastaddict"; }; 
+            command  = "floating enable, resize set 450 850, move position center";
+          }
         ];
       };
       floating = { border = 1; titlebar = false; };
