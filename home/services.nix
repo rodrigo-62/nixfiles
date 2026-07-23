@@ -21,10 +21,10 @@
 
   services.wlsunset = {
     enable = true;
-    temperature.day = 5600;
+    temperature.day = 5700;
     temperature.night = 5000;
   
-    gamma = "0.8"; 
+    gamma = "0.9"; 
   
     latitude = "41.15";
     longitude = "-8.63";
