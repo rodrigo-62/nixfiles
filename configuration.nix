@@ -201,7 +201,8 @@
   programs.wireshark.enable = true;
   programs.wireshark.package = pkgs.wireshark;
 
-  # virtualisation.waydroid.enable = true;
+  virtualisation.waydroid.enable = true;
+  
   # virtualisation.docker.enable = true;
   # virtualisation.docker.package = pkgs.docker;
   
