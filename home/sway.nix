@@ -247,9 +247,6 @@ in
 
         # color picker
         "${mod}+Shift+p" = "exec hyprpicker -a";
-
-        # waydroid
-        "${mod}+Shift+d" = "exec ${scripts_path}/waydroid-toggle.sh";
       };
 
       modes.resize = {
