@@ -71,7 +71,7 @@ in
           }
           {
             criteria = { app_id = "com.bambuna.podcastaddict"; }; 
-            command  = "floating enable, resize set 450 850, move position center";
+            command  = "floating enable, border pixel 1, resize set 425 850, move position center";
           }
         ];
       };
