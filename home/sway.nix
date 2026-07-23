@@ -70,7 +70,7 @@ in
             command  = "floating enable";
           }
           {
-            criteria = { app_id = "com.bambuna.podcastaddict"; }; 
+            criteria = { app_id = "waydroid.com.bambuna.podcastaddict"; }; 
             command  = "floating enable, border pixel 1, resize set 425 850, move position center";
           }
         ];
