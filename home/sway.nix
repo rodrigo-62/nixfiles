@@ -69,10 +69,6 @@ in
             criteria = { app_id = "thunar"; title = ".*(Progress|Confirm|Properties|Create|Rename|Conflict|File Operation).*"; };
             command  = "floating enable";
           }
-          {
-            criteria = { app_id = "waydroid.com.bambuna.podcastaddict"; }; 
-            command  = "floating enable, border pixel 1";
-          }
         ];
       };
       floating = { border = 1; titlebar = false; };
