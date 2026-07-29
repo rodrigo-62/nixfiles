@@ -108,9 +108,6 @@ in
     mat2
 
     protonvpn-gui
-    simplex-chat-desktop
-    tor-browser
-
     firefox # (wrapFirejail "firefox" firefox "")
     vesktop
     calibre
