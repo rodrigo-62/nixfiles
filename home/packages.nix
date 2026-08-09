@@ -115,7 +115,7 @@ in
     termdown
     lorien
     
-    ardour
+    reaper
     qpwgraph
   ];
 
