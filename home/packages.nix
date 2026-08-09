@@ -114,6 +114,9 @@ in
     gnome-calendar
     termdown
     lorien
+    
+    ardour
+    qpwgraph
   ];
 
   features.programs.cli.fastfetch = {

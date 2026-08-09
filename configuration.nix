@@ -137,6 +137,7 @@
   
   # Hardware
   hardware.enableAllFirmware = true;
+  hardware.pulseaudio.enable = false;
 
   # Tablet
   hardware.opentabletdriver.enable = true;
