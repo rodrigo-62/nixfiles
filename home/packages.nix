@@ -117,6 +117,13 @@ in
     
     reaper
     qpwgraph
+    sfizz
+    hydrogen
+    surge-xt
+    vital
+    chow-tape-model
+    dragonfly-reverb
+    lsp-plugins
   ];
 
   features.programs.cli.fastfetch = {
