@@ -72,6 +72,17 @@
         "pass"
       ];
     };
+
+    initExtra = ''
+      init_direnv() {
+        if [ -f flake.nix ]; then
+          echo "use flake" > .envrc
+        else
+          echo "use nix" > .envrc
+        fi
+        direnv allow
+      }
+    '';
   };
 
   programs.direnv = {
