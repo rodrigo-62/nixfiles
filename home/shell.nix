@@ -16,6 +16,18 @@
           source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
         fi
       '')
+    
+      ''
+        init_direnv() {
+          if [ -f flake.nix ]; then
+            echo "use flake" > .envrc
+          else
+            echo "use nix" > .envrc
+          fi
+          direnv allow
+        }
+      ''
+    
       (lib.mkAfter ''
         # to customize prompt run "p10k configure" or edit "~/.p10k.zsh"
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -72,17 +84,6 @@
         "pass"
       ];
     };
-
-    initExtra = ''
-      init_direnv() {
-        if [ -f flake.nix ]; then
-          echo "use flake" > .envrc
-        else
-          echo "use nix" > .envrc
-        fi
-        direnv allow
-      }
-    '';
   };
 
   programs.direnv = {
