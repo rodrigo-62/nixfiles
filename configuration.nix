@@ -19,6 +19,28 @@
   networking.networkmanager.enable      = true;
   networking.firewall.trustedInterfaces = [ "virbr0" "virbr1" "virbr2" ];
 
+  networking.networkmanager.ensureProfiles.profiles.eduroam = {
+    connection = {
+      id = "eduroam";
+      type = "wifi";
+    };
+    wifi = {
+      mode = "infrastructure";
+      ssid = "eduroam";
+    };
+    wifi-security = {
+      key-mgmt = "wpa-eap";
+    };
+    "802-1x" = {
+      eap = "ttls";
+      phase2-auth = "pap";
+      identity = "up202504675@up.pt";
+      ca-cert = "/etc/eduroam/Comodo_CA.cer";
+    };
+    ipv4.method = "auto";
+    ipv6.method = "auto";
+  };
+
   # Locale & time
   time.timeZone = "Europe/Lisbon";
 
