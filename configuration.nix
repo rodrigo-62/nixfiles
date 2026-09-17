@@ -34,8 +34,8 @@
     "802-1x" = {
       eap = "ttls";
       phase2-auth = "pap";
-      identity = "up202504675@up.pt";
-      ca-cert = "/etc/eduroam/Comodo_CA.cer";
+      identity = "up202504675@fba.up.pt";
+      system-ca-certs = "1";
     };
     ipv4.method = "auto";
     ipv6.method = "auto";
