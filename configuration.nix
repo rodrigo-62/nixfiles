@@ -218,6 +218,10 @@
     };
   };
 
+  services.tailscale = {
+    enable = true;
+  };
+
   services.udisks2.enable = true;
   services.flatpak.enable = true;
 
