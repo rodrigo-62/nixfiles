@@ -35,7 +35,8 @@
       eap = "ttls";
       phase2-auth = "pap";
       identity = "up202504675@fba.up.pt";
-      system-ca-certs = "1";
+      ca-cert = "${./eduroam-ca.pem}";
+      domain-suffix-match = "radius.up.pt";
     };
     ipv4.method = "auto";
     ipv6.method = "auto";
