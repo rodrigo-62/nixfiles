@@ -20,6 +20,7 @@ let
   pythonScriptsEnv = pkgs.python3.withPackages (ps: with ps; [
     cryptography
     pwntools
+    dirsearch
     
     pymupdf
     regex
