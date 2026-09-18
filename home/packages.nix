@@ -19,6 +19,7 @@ let
 
   pythonScriptsEnv = pkgs.python3.withPackages (ps: with ps; [
     cryptography
+    pwntools
     
     pymupdf
     regex
@@ -124,6 +125,23 @@ in
     # chow-tape-model
     # dragonfly-reverb
     # lsp-plugins
+
+    nmap
+    # metasploit # msfconsole, msfvenon, etc. - long build/download
+    aircrack-ng
+    hashcat
+    gef
+    ghidra
+    waybackurls
+    dirsearch
+    ffuf
+    subfinder
+    nuclei
+    gowitness
+
+    massdns
+    go
+    ruby    
   ];
 
   features.programs.cli.fastfetch = {
