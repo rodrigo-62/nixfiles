@@ -133,7 +133,6 @@ in
     gef
     ghidra
     waybackurls
-    dirsearch
     ffuf
     subfinder
     nuclei
