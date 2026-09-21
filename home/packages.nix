@@ -128,7 +128,7 @@ in
     # lsp-plugins
 
     nmap
-    # metasploit # msfconsole, msfvenon, etc. - long build/download
+    metasploit # msfconsole, msfvenon, etc. - long build/download
     aircrack-ng
     hashcat
     gef
@@ -142,6 +142,7 @@ in
     massdns
     go
     ruby    
+    odin
   ];
 
   features.programs.cli.fastfetch = {
