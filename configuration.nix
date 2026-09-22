@@ -35,7 +35,7 @@
       eap = "ttls";
       phase2-auth = "pap";
       identity = "up202504675@fba.up.pt";
-      password = lib.strings.removeSuffix "\n" (builtins.readFile ./utils/eduroam-password);
+      password = lib.strings.removeSuffix "\n" (builtins.readFile "/etc/nixos-secrets/eduroam-password");
       ca-cert = "${./utils/eduroam-ca.pem}";
       domain-suffix-match = "radius.up.pt";
     };
