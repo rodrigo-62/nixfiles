@@ -143,6 +143,14 @@ in
     go
     ruby    
     odin
+
+    assetfinder
+    httprobe
+    dnsx
+    httpx
+    gobuster
+    kiterunner
+    
   ];
 
   features.programs.cli.fastfetch = {
