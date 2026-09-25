@@ -65,7 +65,7 @@
   users.users.parrhasius = {
     isNormalUser = true;
     description  = "Parrhasius";
-    extraGroups  = [ "networkmanager" "wheel" "wireshark" "docker" "libvirtd" "storage" "dialout" "kvm" "audio" "uinput" ];
+    extraGroups  = [ "networkmanager" "wheel" "wireshark" "docker" "libvirtd" "storage" "dialout" "kvm" "audio" "uinput" "vboxusers" ];
     shell        = pkgs.zsh;
   };
 
@@ -244,6 +244,8 @@
   
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true; 
+
+  virtualisation.virtualbox.host.enable = true;
 
   # Sway (actual config is in home.nix)
   programs.sway = {
