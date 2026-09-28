@@ -36,11 +36,24 @@ let
     opencv4
   ]);
 
+    rPkgs = with pkgs.rPackages; [
+      tidyverse
+      ggplot2
+      knitr
+      rmarkdown
+      languageserver
+    ];
+
+    myR = pkgs.rWrapper.override { packages = rPkgs; };
+    myRStudio = pkgs.rstudioWrapper.override { packages = rPkgs; };
+    
 in
 {
   home.packages = with pkgs; [
     pythonScriptsEnv
-
+    myR
+    myRStudio
+    
     foot 
     waybar
     swaylock
