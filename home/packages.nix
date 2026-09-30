@@ -150,6 +150,8 @@ in
     httpx
     gobuster
     kiterunner
+
+    openssl
     
   ];
 
