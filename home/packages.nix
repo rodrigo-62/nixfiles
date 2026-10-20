@@ -43,9 +43,8 @@ let
 
   autenticacao-gov-plugin = pkgs.writeShellScriptBin "autenticacao-gov-plugin" ''
     export _JAVA_AWT_WM_NONREPARENTING=1
-    exec ${pkgs.jre}/bin/java \
-      -Dsun.security.smartcardio.library=${pkgs.pcsclite.lib}/lib/libpcsclite.so.1 \
-      -jar ${autenticacao-gov-plugin-jar} "$@"
+    export LD_LIBRARY_PATH=${pkgs.pcsclite.lib}/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+    exec ${pkgs.jre}/bin/java -jar ${autenticacao-gov-plugin-jar} "$@"
   '';
 
 in
