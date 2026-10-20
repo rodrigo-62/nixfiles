@@ -36,10 +36,25 @@ let
     opencv4
   ]);
 
+  autenticacao-gov-plugin-jar = pkgs.fetchurl {
+    url  = "https://aplicacoes.autenticacao.gov.pt/plugin/plugin-autenticacao-gov.jar";
+    hash = "sha256-LIwCw4NRSChxCMMPVL1jqe8dR8EQ79iifZayGMbpYkQ=";
+  };
+
+  autenticacao-gov-plugin = pkgs.writeShellScriptBin "autenticacao-gov-plugin" ''
+    export _JAVA_AWT_WM_NONREPARENTING=1
+    exec ${pkgs.jre}/bin/java \
+      -Dsun.security.smartcardio.library=${pkgs.pcsclite.lib}/lib/libpcsclite.so.1 \
+      -jar ${autenticacao-gov-plugin-jar} "$@"
+  '';
+
 in
 {
   home.packages = with pkgs; [
     pythonScriptsEnv
+
+    autenticacao-gov-plugin
+    pcsc-tools
     
     foot 
     waybar

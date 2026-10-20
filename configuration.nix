@@ -231,6 +231,8 @@
     # torsocks.enable = true; 
   };
 
+  services.pcscd.enable = true;
+
   # privileged programs
   programs.wireshark.enable = true;
   programs.wireshark.package = pkgs.wireshark;
