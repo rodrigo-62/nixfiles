@@ -6,10 +6,10 @@
     package = pkgs.vscodium;
 
     profiles.default = {
-      extensions = [
-        inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.vscode-marketplace.monokai.theme-monokai-pro-vscode
-        pkgs.vscode-extensions.jnoortheen.nix-ide
-      ];
+      # extensions = [
+      #   inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.vscode-marketplace.monokai.theme-monokai-pro-vscode
+      #   pkgs.vscode-extensions.jnoortheen.nix-ide
+      # ];
 
       userSettings = {
         "workbench.colorTheme" = "Monokai Pro";
