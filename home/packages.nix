@@ -142,18 +142,18 @@ in
     # lsp-plugins
 
     nmap
-    metasploit # msfconsole, msfvenon, etc. - long build/download
-    aircrack-ng
-    hashcat
-    gef
-    ghidra
-    waybackurls
-    ffuf
+    # metasploit # msfconsole, msfvenon, etc. - long build/download
+    # aircrack-ng
+    # hashcat
+    # gef
+    # ghidra
+    # waybackurls
+    # ffuf
     subfinder
     nuclei
-    gowitness
+    # gowitness
 
-    massdns
+    # massdns
     go
     ruby    
     odin
@@ -162,11 +162,9 @@ in
     httprobe
     dnsx
     httpx
-    gobuster
-    kiterunner
-
+    # gobuster
+    # kiterunner
     openssl
-    
   ];
 
   features.programs.cli.fastfetch = {
