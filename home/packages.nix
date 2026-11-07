@@ -165,6 +165,8 @@ in
     # gobuster
     # kiterunner
     openssl
+
+    blender
   ];
 
   features.programs.cli.fastfetch = {
