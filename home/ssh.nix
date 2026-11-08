@@ -22,6 +22,7 @@
 
       "*" = {
          # global defaults here
+         addKeysToAgent = "yes";
       };
 
     };
