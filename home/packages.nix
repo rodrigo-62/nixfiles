@@ -111,7 +111,6 @@ in
     parted
     util-linux
     
-    krita
     wireguard-tools 
     caligula 
 
@@ -167,6 +166,7 @@ in
     openssl
 
     blender
+    claude-code
   ];
 
   features.programs.cli.fastfetch = {
