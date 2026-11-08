@@ -167,6 +167,7 @@ in
 
     blender
     claude-code
+    gh
   ];
 
   features.programs.cli.fastfetch = {
