@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # helix.url   = "github:helix-editor/helix/master";
     # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
