@@ -173,6 +173,7 @@ in
     blender
     unstable.claude-code
     gh
+    sound-theme-freedesktop
   ];
 
   features.programs.cli.fastfetch = {
