@@ -45,6 +45,10 @@
       pkgs.biome                                   # formatting and linting
 
       pkgs.sqls    # auto-complete and SQL formatting
+
+      # Markdown tools
+      pkgs.nodePackages.prettier # aligns tables and normalizes spacing
+      pkgs.marksman              # language server for headings and links
     ];
 
     languages = {
@@ -82,6 +86,12 @@
         }
         {
           name = "markdown";
+          auto-format = true;
+          language-servers = [ "marksman" ];
+          formatter = {
+            command = "prettier";
+            args = [ "--parser" "markdown" ];
+          };
           soft-wrap = {
             enable = true;
             # wrap-indicator = ""; # optional - removes the arrow indicator
