@@ -80,6 +80,13 @@
           auto-format = true;
           language-servers = [ "sqls" ];
         }
+        {
+          name = "markdown";
+          soft-wrap = {
+            enable = true;
+            # wrap-indicator = ""; # optional - removes the arrow indicator
+          };
+        }
       ];
     };
   };
