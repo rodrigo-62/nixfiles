@@ -174,6 +174,7 @@ in
     unstable.claude-code
     gh
     sound-theme-freedesktop
+    krita
   ];
 
   features.programs.cli.fastfetch = {
