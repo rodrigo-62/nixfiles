@@ -56,7 +56,7 @@
     };
   };
 
-# Bind each output's primary workspace strictly so Sway picks 10 for DP-1 at boot:
+  # Bind each output's primary workspace strictly so Sway picks 10 for DP-1 at boot:
   wayland.windowManager.sway.config.workspaceOutputAssign = [
     { workspace = "1";  output = "HDMI-A-1 eDP-1"; } # Monitor first; laptop if monitor is unplugged
     { workspace = "2";  output = "eDP-1"; }          # Second choice for laptop (used when monitor takes 1)
@@ -118,3 +118,4 @@
       }
     ];
   };
+}
