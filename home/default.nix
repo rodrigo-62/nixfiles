@@ -56,16 +56,21 @@
     };
   };
 
-  # Fallback rules for newly created workspaces in Sway:
+# Bind each output's primary workspace strictly so Sway picks 10 for DP-1 at boot:
   wayland.windowManager.sway.config.workspaceOutputAssign = [
-    { workspace = "1";  output = "HDMI-A-1 eDP-1"; } # Monitor first; laptop if monitor unplugged
-    { workspace = "2";  output = "eDP-1"; }          # Laptop panel
-    { workspace = "10"; output = "DP-1 eDP-1"; }     # Tablet first; laptop if tablet unplugged
+    { workspace = "1";  output = "HDMI-A-1 eDP-1"; } # Monitor first; laptop if monitor is unplugged
+    { workspace = "2";  output = "eDP-1"; }          # Second choice for laptop (used when monitor takes 1)
+    { workspace = "10"; output = "DP-1"; }           # Strictly tablet (Sway auto-migrates if unplugged)
   ];
 
-  # Dynamic display positions and live workspace switching on hotplug:
+  # Ensure kanshi starts reliably with Sway on boot:
+  wayland.windowManager.sway.config.startup = [
+    { command = "${pkgs.systemd}/bin/systemctl --user restart kanshi"; always = true; }
+  ];
+
   services.kanshi = {
     enable = true;
+    systemdTarget = "sway-session.target";
     settings = [
       {
         profile.name = "all-three";
@@ -75,9 +80,9 @@
           { criteria = "DP-1";     position = "1920,1080"; }
         ];
         profile.exec = [
-          "swaymsg workspace 1, move workspace to output HDMI-A-1"
-          "swaymsg workspace 2, move workspace to output eDP-1"
-          "swaymsg workspace 10, move workspace to output DP-1"
+          "${pkgs.sway}/bin/swaymsg workspace 1, move workspace to output HDMI-A-1, focus output HDMI-A-1, workspace 1"
+          "${pkgs.sway}/bin/swaymsg workspace 2, move workspace to output eDP-1, focus output eDP-1, workspace 2"
+          "${pkgs.sway}/bin/swaymsg workspace 10, move workspace to output DP-1, focus output DP-1, workspace 10"
         ];
       }
       {
@@ -87,8 +92,8 @@
           { criteria = "DP-1";  position = "1920,0"; }
         ];
         profile.exec = [
-          "swaymsg workspace 1, move workspace to output eDP-1"
-          "swaymsg workspace 10, move workspace to output DP-1"
+          "${pkgs.sway}/bin/swaymsg workspace 10, move workspace to output DP-1, focus output DP-1, workspace 10"
+          "${pkgs.sway}/bin/swaymsg workspace 1, move workspace to output eDP-1, focus output eDP-1, workspace 1"
         ];
       }
       {
@@ -98,8 +103,8 @@
           { criteria = "eDP-1";    position = "0,1080"; }
         ];
         profile.exec = [
-          "swaymsg workspace 1, move workspace to output HDMI-A-1"
-          "swaymsg workspace 2, move workspace to output eDP-1"
+          "${pkgs.sway}/bin/swaymsg workspace 2, move workspace to output eDP-1, focus output eDP-1, workspace 2"
+          "${pkgs.sway}/bin/swaymsg workspace 1, move workspace to output HDMI-A-1, focus output HDMI-A-1, workspace 1"
         ];
       }
       {
@@ -108,9 +113,8 @@
           { criteria = "eDP-1"; position = "0,0"; }
         ];
         profile.exec = [
-          "swaymsg workspace 1, move workspace to output eDP-1"
+          "${pkgs.sway}/bin/swaymsg workspace 1, move workspace to output eDP-1, focus output eDP-1, workspace 1"
         ];
       }
     ];
   };
-}
