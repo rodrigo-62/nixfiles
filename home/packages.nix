@@ -175,6 +175,7 @@ in
     gh
     sound-theme-freedesktop
     krita
+    piper-tts
   ];
 
   features.programs.cli.fastfetch = {
