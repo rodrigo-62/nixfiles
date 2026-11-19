@@ -26,6 +26,15 @@
           fi
           direnv allow
         }
+
+        say() {
+          if [ $# -gt 0 ]; then
+            echo "$*"
+          else
+            cat
+          fi | piper --model "$HOME/piper-voices/en_US-lessac-medium.onnx" --output-raw \
+             | pw-cat --playback --raw --rate 22050 --format s16 --channels 1 -
+        }
       ''
     
       (lib.mkAfter ''
