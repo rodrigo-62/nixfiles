@@ -176,6 +176,7 @@ in
     sound-theme-freedesktop
     krita
     piper-tts
+    chromium
   ];
 
   features.programs.cli.fastfetch = {
