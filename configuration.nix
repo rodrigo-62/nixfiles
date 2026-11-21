@@ -201,6 +201,8 @@
       "context.properties" = {
         "default.clock.rate" = 44100;
         "default.clock.allowed-rates" = [ 44100 48000 ];
+        "default.clock.quantum" = 128;
+        "default.clock.max-quantum" = 128; # caps Chromium's 1024-frame input request (raise to 256 if it starts crackling)
       };
     };
     wireplumber.enable = true;
