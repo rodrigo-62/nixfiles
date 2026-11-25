@@ -123,7 +123,10 @@ in
     yt-dlp
         
     # obsidian
-    (obsidian.override { electron_40 = electron_37; })
+    (obsidian.override {
+      # Electron 37 while nixpkgs has it; Electron 40 (blank built-in PDF viewer) once it's removed.
+      electron_40 = let e = builtins.tryEval electron_37; in if e.success then e.value else electron_40;
+    })
     sherlock
     exiftool
     mat2
