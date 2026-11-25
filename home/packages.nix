@@ -122,7 +122,8 @@ in
     ytfzf
     yt-dlp
         
-    obsidian
+    # obsidian
+    (obsidian.override { electron_40 = electron_37; })
     sherlock
     exiftool
     mat2

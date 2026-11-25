@@ -113,6 +113,8 @@
     wget
   ];
 
+  nixpkgs.config.permittedInsecurePackages = [ "electron-37.10.3" ];
+
   programs.dconf.enable = true;
   services.gnome.evolution-data-server.enable = true;
 
