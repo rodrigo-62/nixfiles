@@ -65,7 +65,7 @@
 
   # Ensure kanshi starts reliably with Sway on boot:
   wayland.windowManager.sway.config.startup = [
-    { command = "${pkgs.systemd}/bin/systemctl --user restart kanshi"; always = true; }
+    { command = "${pkgs.systemd}/bin/systemctl --user try-restart kanshi"; always = true; }
   ];
 
   services.kanshi = {
